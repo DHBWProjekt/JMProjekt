@@ -17,3 +17,10 @@ Regelwerk für die Erstellung von Quellcode im Projekt:
 	8. Variablennamen immer klein beginnen und bei zusammengesetzten Wörtern 
 	   Anfangsbuchstaben in der Mitte groß (z.B.: datumEinschulung) 
 	9. Quellcode immer einrücken, sodass man die unterschiedlichen Blöcke erkennen 
+
+Einstellungen zur Einhaltung des Regelwerks:
+
+Window -> Preferences -> Java -> Editor -> Save Actions -> Format Source Code
+
+Wenn dieses Kästchen aktiviert wird, können beim Speichern automatisch Leerzeilen gelöscht 
+und Blöcke eingerückt werden
