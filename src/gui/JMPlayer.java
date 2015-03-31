@@ -15,7 +15,8 @@ public class JMPlayer{
 		String[][] data = new String[][]{
 				{"Reich und Sexy", "Die Toten Hosen", "Rock", "3:25"},
 				{"Blue", "Eifel 65", "Pop", "3:22"},
-				{"Türlich Türlich", "Das Bo", "Hip-Hop", "3:45"}
+				{"Türlich Türlich", "Das Bo", "Hip-Hop", "3:45"},
+				{"Flat Beat","Mr. Oreo","Dance","3:22"}
 		};
  
 		// Die Column-Titles

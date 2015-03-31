@@ -10,6 +10,7 @@ public class dbConnection {
 
 	public static void main(String[] args) {
 
+		long anfangszeit = (System.currentTimeMillis());
 		Connection con;
 		Statement stmt;
 		ResultSet rs;
@@ -23,6 +24,12 @@ public class dbConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		long endzeit = (System.currentTimeMillis());
+		
+		long gesamtzeit = endzeit - anfangszeit;
+		
+		System.out.println("Gebrauchte Zeit in ms: " + gesamtzeit);
 	}
 
 }
