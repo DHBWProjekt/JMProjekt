@@ -1,0 +1,31 @@
+USE 
+	java_music_project;
+
+CREATE TABLE 
+	interpret (nummer INTEGER AUTO_INCREMENT PRIMARY KEY, 
+				artist VARCHAR(40));
+
+INSERT INTO 
+	interpret (nummer, artist) 
+VALUES 
+	(1, 'skunk anansie');
+	
+INSERT INTO 
+	interpret (nummer, artist) 
+VALUES 
+	(2, 'nico & vinz');
+	
+INSERT INTO 
+	interpret (nummer, artist) 
+VALUES 
+	(3, 'timbaland');
+	
+INSERT INTO 
+	interpret (nummer, artist) 
+VALUES 
+	(4, 'megastylez');
+	
+INSERT INTO 
+	interpret (nummer, artist) 
+VALUES 
+	(5, 'armin van buuren');

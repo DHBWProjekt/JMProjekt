@@ -1,0 +1,31 @@
+USE 
+	java_music_project;
+
+CREATE TABLE 
+	musikrichtung (nummer INTEGER AUTO_INCREMENT PRIMARY KEY, 
+					genre VARCHAR(40));
+
+INSERT INTO 
+	musikrichtung (nummer, genre) 
+VALUES 
+	(1, 'rock');
+	
+INSERT INTO 
+	musikrichtung (nummer, genre) 
+VALUES 
+	(2, 'pop');
+	
+INSERT INTO 
+	musikrichtung (nummer, genre) 
+VALUES 
+	(3, 'techno');
+	
+INSERT INTO 
+	musikrichtung (nummer, genre) 
+VALUES 
+	(4, 'hands up');
+	
+INSERT INTO 
+	musikrichtung (nummer, genre) 
+VALUES 
+	(5, 'trance');

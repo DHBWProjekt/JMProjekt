@@ -1,0 +1,20 @@
+USE 
+	java_music_project;
+
+SELECT 	
+	lieder.nummer, 
+	lieder.titel, 
+	interpret.artist, 
+	musikrichtung.genre
+FROM
+	lieder AS lieder
+JOIN 
+	interpret AS interpret 
+	ON 
+		interpret.nummer = lieder.interpret
+JOIN 
+	musikrichtung AS musikrichtung
+	ON 
+		musikrichtung.nummer = lieder.genre
+ORDER BY 
+	interpret.artist;

@@ -1,0 +1,41 @@
+USE 
+	java_music_project;
+
+CREATE TABLE 
+	lieder (nummer INTEGER AUTO_INCREMENT PRIMARY KEY, 
+			titel VARCHAR(50), 
+			interpret INTEGER, 
+			album VARCHAR(50), 
+			genre INTEGER, 
+			laenge TIME, 
+			pfad VARCHAR(100));
+
+INSERT INTO 
+	lieder (nummer, titel, interpret, genre) 
+VALUES 
+	(1, 'hedonism', 1, 1);
+	
+INSERT INTO 
+	lieder (nummer, titel, interpret, genre) 
+VALUES 
+	(2, 'weak', 1, 1);
+	
+INSERT INTO 
+	lieder (nummer, titel, interpret, genre) 
+VALUES 
+	(3, 'am i wrong', 2, 2);
+	
+INSERT INTO 
+	lieder (nummer, titel, interpret, genre) 
+VALUES 
+	(4, 'the way i are', 3, 2,);
+	
+INSERT INTO 
+	lieder (nummer, titel, interpret, genre) 
+VALUES 
+	(5, 'whiteline fever', 4, 4);
+	
+INSERT INTO 
+	lieder (nummer, titel, interpret, genre) 
+VALUES 
+	(6, 'together [in a state of trance]', 5, 5);
