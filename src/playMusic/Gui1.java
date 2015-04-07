@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Gui1 {
+	private JButton meinButton = null;
 
 	public static void main(String[] args) {
 
@@ -29,7 +30,7 @@ public class Gui1 {
 		 * versehen
 		 */
 		for (int i = 1; i < 6; i++) {
-			JButton meinButton = new JButton("" + i);
+			meinButton = new JButton("" + i);
 			meinPanel.add(meinButton);
 
 			ActionListener ad = new ActionListener() {
@@ -147,5 +148,4 @@ public class Gui1 {
 		meinFrame.pack();
 		meinFrame.setVisible(true);
 	}
-
 }
