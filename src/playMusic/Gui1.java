@@ -24,6 +24,10 @@ public class Gui1 {
 
 		Panel1 meinPanel = new Panel1();
 
+		/*
+		 * 5 Button werden initialisiert und jeweils mit einem ActionListener
+		 * versehen
+		 */
 		for (int i = 1; i < 6; i++) {
 			JButton meinButton = new JButton("" + i);
 			meinPanel.add(meinButton);
@@ -31,7 +35,11 @@ public class Gui1 {
 			ActionListener ad = new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
 
-					// meinButton.getName();
+					/*
+					 * Der Text der auf dem Button steht wird abgelesen und in
+					 * einer Variablen gespeicher. Diese wird später für die
+					 * SQL-Abfrage benötigt.
+					 */
 					System.out.println("Die Zahl ist " + meinButton.getText());
 					String text = meinButton.getText();
 					Connection con = null;
@@ -58,6 +66,11 @@ public class Gui1 {
 						 * executeQuery liefert als Ergebnis ein ResultSet,
 						 * abhängig // vom SQL-Befehl
 						 */
+
+						/*
+						 * Hier wird die Tabelle Lieder durchsucht, bei dem der
+						 * Interpret mit der gedrückten Taste übereinstimmt
+						 */
 						rs = stmt
 								.executeQuery("select * from lieder where interpret="
 										+ text);
@@ -69,8 +82,17 @@ public class Gui1 {
 
 							try {
 
+								/*
+								 * Inhalt der Spalte 7 auf die der SQL-Select
+								 * zutrifft wird ausgegeben
+								 */
 								System.out.print(rs.getString(7) + "\n");
-								mp3Spielen spielner = new mp3Spielen(
+								/*
+								 * Eine Instanz des MP3-Spielers wird erzeugt
+								 * und der zuvor ermittelte Inhalt der Spalte
+								 * übergeben
+								 */
+								mp3Spielen spieler = new mp3Spielen(
 										rs.getString(7));
 
 							} catch (Exception e) {
