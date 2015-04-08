@@ -71,6 +71,7 @@ public class Gui1 {
 						 * Hier wird die Tabelle Lieder durchsucht, bei dem der
 						 * Interpret mit der gedrückten Taste übereinstimmt
 						 */
+
 						rs = stmt
 								.executeQuery("select * from lieder where interpret="
 										+ text);
