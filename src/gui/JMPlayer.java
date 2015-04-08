@@ -66,7 +66,7 @@ public class JMPlayer extends JFrame {
 	private JFileChooser chooser = new JFileChooser();
 
 	JFXPanel fxPanel = new JFXPanel();
-	String pfad = "file:/Users/Guest/test/01Cantina.mp3";
+	String pfad = "file:lib/RangersIntroduction.m4a";
 	Media song = new Media(pfad);
 	MediaPlayer masterPlayer = new MediaPlayer(song);
 
