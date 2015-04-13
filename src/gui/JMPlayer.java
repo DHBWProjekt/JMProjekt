@@ -42,7 +42,7 @@ public class JMPlayer extends JFrame {
 	private DefaultTableModel bibliothekModel = new DefaultTableModel(data1,
 			title1);
 
-	private String[] title2 = new String[] { "Pfad", "Pfad ASCII" };
+	private String[] title2 = new String[] { "Pfad", "Pfad ASCII", "Dauer" };
 	private String[][] data2;
 	private DefaultTableModel pfadModel;
 
@@ -69,14 +69,11 @@ public class JMPlayer extends JFrame {
 	private JFileChooser chooser = new JFileChooser();
 
 	JFXPanel fxPanel = new JFXPanel();
-	String pfad = "file:/Users/Guest/test/01Cantina.mp3";
-	Media song = new Media(pfad);
-	MediaPlayer masterPlayer = new MediaPlayer(song);
+	MediaPlayer masterPlayer;
 
 	// Konstruktor für JMPlayer,
 	public JMPlayer(String name) {
-
-		// masterPlayer.play();
+		System.out.println(masterPlayer);
 		// Fenster Titel wird gesetzt
 		setTitle(name);
 		// Buttons bekommen den Action listener bal zugewiesen
@@ -123,14 +120,12 @@ public class JMPlayer extends JFrame {
 	 * oder Tastatur getroffen wird
 	 */
 	private class MusicTableSelectionListener implements ListSelectionListener {
-		JFXPanel fxPanel = new JFXPanel();
-		String bip = "file:/Users/Guest/test/01Cantina.mp3";
-		Media hit = new Media(bip);
-		MediaPlayer mediaPlayer = new MediaPlayer(hit);
+		// JFXPanel fxPanel = new JFXPanel();
+		// String bip = "file:/Users/Guest/test/01Cantina.mp3";
+		// Media hit = new Media(bip);
+		// MediaPlayer mediaPlayer = new MediaPlayer(hit);
 
 		public void valueChanged(ListSelectionEvent e) {
-			System.out.println(e.getSource());
-			System.out.println(table.getSelectedRow());
 			int selectedRow = table.getSelectedRow();
 			String anzeigeText = "";
 			// Schleifendurchlauf um alle Spalten der Tabelle auszulesen
@@ -139,17 +134,17 @@ public class JMPlayer extends JFrame {
 						+ String.valueOf(table.getValueAt(selectedRow, i) + " ");
 			}
 			anzeige.setText(anzeigeText);
-			hit = new Media(String.valueOf(table.getValueAt(selectedRow, 1)));
-			mediaPlayer.stop();
-			mediaPlayer = new MediaPlayer(hit);
-			masterPlayer = mediaPlayer;
-			mediaPlayer.play();
-			System.out.println(hit.getMetadata());
-			System.out.println(hit.getDuration());
-			System.out.println(mediaPlayer);
-			System.out.println(mediaPlayer.getMedia().getMetadata());
-			anzeige.setText(String.valueOf(mediaPlayer.getMedia().getMetadata()
-					.get("title")));
+			if (masterPlayer == null) {
+			} else {
+				masterPlayer.stop();
+				masterPlayer.dispose();
+				masterPlayer = null;
+			}
+			masterPlayer = new MediaPlayer(new Media(String.valueOf(table
+					.getValueAt(selectedRow, 1))));
+			masterPlayer.play();
+			anzeige.setText(String.valueOf(masterPlayer.getMedia()
+					.getMetadata().get("title")));
 		}
 	}
 
@@ -163,6 +158,7 @@ public class JMPlayer extends JFrame {
 			} else if (e.getSource() == pause) {
 				// Musik pausiert
 				masterPlayer.pause();
+				System.out.println(masterPlayer.getMedia().getDuration());
 				System.out.println("Musik pausiert");
 			} else if (e.getSource() == stopp) {
 				// Musik stoppt
@@ -185,6 +181,7 @@ public class JMPlayer extends JFrame {
 				// Dialog zum Oeffnen von Dateien anzeigen
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int auswahl = chooser.showOpenDialog(null);
+
 				if (auswahl == JFileChooser.APPROVE_OPTION) {
 					// Ausgabe der ausgewaehlten Datei
 					f = new File(chooser.getSelectedFile().getPath());
@@ -200,11 +197,12 @@ public class JMPlayer extends JFrame {
 						}
 					}
 					data2 = new String[musicFileCounter][2];
+					MediaPlayer[] tempPlayer = new MediaPlayer[musicFileCounter];
 					musicFileCounter = 0;
 					for (int i = 0; i < fileArray.length; i++) {
-						System.out.println(fileArray[i]);
-						System.out.println(fileArray[i].getName().endsWith(
-								".mp3"));
+						// System.out.println(fileArray[i]);
+						// System.out.println(fileArray[i].getName().endsWith(
+						// ".mp3"));
 						if (fileArray[i].getName().endsWith(".mp3") == true
 								|| fileArray[i].getName().endsWith(".m4a") == true
 								|| fileArray[i].getName().endsWith(".mp3") == true
@@ -212,30 +210,33 @@ public class JMPlayer extends JFrame {
 							path = fileArray[i].toURI().toASCIIString();
 							data2[musicFileCounter][0] = fileArray[i].getName();
 							data2[musicFileCounter][1] = path;
-							System.out.println(data2[musicFileCounter][0]);
+							// tempPlayer[musicFileCounter] = new MediaPlayer(
+							// new Media(path));
+							// data2[musicFileCounter][2] = String
+							// .valueOf(tempPlayer[musicFileCounter]
+							// .getMedia().getDuration());
+							// tempPlayer[musicFileCounter].dispose();
+							// tempPlayer[musicFileCounter] = null;
+							System.out.println("File: " + musicFileCounter);
+							// System.out.println(data2[musicFileCounter][0]);
 							musicFileCounter++;
 						}
 					}
+					// for (int i = 0; i < musicFileCounter; i++) {
+					// data2[i][2] = String.valueOf(tempPlayer[i].getMedia()
+					// .getDuration());
+					// tempPlayer[i].dispose();
+					// tempPlayer[i] = null;
+					// System.out.println("File: " + i);
+					// }
+					tempPlayer = null;
 					pfadModel = new DefaultTableModel(data2, title2);
 					table.getSelectionModel().removeListSelectionListener(tsl);
 					table.setModel(pfadModel);
 					table.getSelectionModel().addListSelectionListener(tsl);
-
-					// System.out.println("Die zu öffnende Datei ist: "
-					// + chooser.getSelectedFile().getPath());
-					// bip = "file:" + chooser.getSelectedFile().getPath();
-					// bip = bip.replace(" ", "%20");
-					// anzeige.setText(chooser.getSelectedFile().getPath());
-					// File file = new
-					// File(chooser.getSelectedFile().getPath());
-					// String path = file.toURI().toASCIIString();
-					// System.out.println(path);
-					// System.out.println(bip);
-					// hit = new Media(path);
-					// mediaPlayer = new MediaPlayer(hit);
+					// System.out.println(getMyFrame());
+					System.out.println("Ordner öffnen");
 				}
-				// System.out.println(getMyFrame());
-				System.out.println("Ordner öffnen");
 			}
 		}
 	}
